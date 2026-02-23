@@ -1,0 +1,188 @@
+[
+  {
+    "title": "Shoplit",
+    "url": "https://docs.keenthemes.com/shoplit",
+    "section": "shoplit",
+    "path": "metronic/v9.4.5/index.md"
+  },
+  {
+    "title": "Introduction - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs.md"
+  },
+  {
+    "title": "Changelog - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/getting-started/changelog",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/getting-started/changelog.md"
+  },
+  {
+    "title": "Components - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/getting-started/components",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/getting-started/components.md"
+  },
+  {
+    "title": "Installation - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/getting-started/installation",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/getting-started/installation.md"
+  },
+  {
+    "title": "Prisma - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/getting-started/prisma",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/getting-started/prisma.md"
+  },
+  {
+    "title": "References - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/getting-started/references",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/getting-started/references.md"
+  },
+  {
+    "title": "Starter Kits - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/getting-started/starter-kits",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/getting-started/starter-kits.md"
+  },
+  {
+    "title": "Supabase - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/getting-started/supabase",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/getting-started/supabase.md"
+  },
+  {
+    "title": "Adding a New Page - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/guides/adding-new-page",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/guides/adding-new-page.md"
+  },
+  {
+    "title": "Authentication - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/guides/authentication",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/guides/authentication.md"
+  },
+  {
+    "title": "Custom Auth - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/guides/custom-auth",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/guides/custom-auth.md"
+  },
+  {
+    "title": "Dark Mode - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/guides/dark-mode",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/guides/dark-mode.md"
+  },
+  {
+    "title": "Deployment - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/guides/deployment",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/guides/deployment.md"
+  },
+  {
+    "title": "Hooks - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/guides/hooks",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/guides/hooks.md"
+  },
+  {
+    "title": "Internationalization - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/guides/internationalization",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/guides/internationalization.md"
+  },
+  {
+    "title": "Layouts - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/guides/layouts",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/guides/layouts.md"
+  },
+  {
+    "title": "Providers - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/guides/providers",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/guides/providers.md"
+  },
+  {
+    "title": "Routing - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/guides/routing",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/guides/routing.md"
+  },
+  {
+    "title": "RTL Support - Metronic NextJS",
+    "url": "https://docs.keenthemes.com/metronic-nextjs/metronic-nextjs/guides/rtl",
+    "section": "metronic-nextjs",
+    "path": "metronic/v9.4.5/metronic-nextjs/guides/rtl.md"
+  },
+  {
+    "title": "Introduction - Shoplit",
+    "url": "https://docs.keenthemes.com/shoplit/shoplit",
+    "section": "shoplit",
+    "path": "metronic/v9.4.5/shoplit.md"
+  },
+  {
+    "title": "Authentication - Shoplit",
+    "url": "https://docs.keenthemes.com/shoplit/shoplit/authentication",
+    "section": "shoplit",
+    "path": "metronic/v9.4.5/shoplit/authentication.md"
+  },
+  {
+    "title": "Changelog - Shoplit",
+    "url": "https://docs.keenthemes.com/shoplit/shoplit/changelog",
+    "section": "shoplit",
+    "path": "metronic/v9.4.5/shoplit/changelog.md"
+  },
+  {
+    "title": "Deployment - Shoplit",
+    "url": "https://docs.keenthemes.com/shoplit/shoplit/deployment",
+    "section": "shoplit",
+    "path": "metronic/v9.4.5/shoplit/deployment.md"
+  },
+  {
+    "title": "Internationalization (i18n) - Shoplit",
+    "url": "https://docs.keenthemes.com/shoplit/shoplit/i18n",
+    "section": "shoplit",
+    "path": "metronic/v9.4.5/shoplit/i18n.md"
+  },
+  {
+    "title": "Installation - Shoplit",
+    "url": "https://docs.keenthemes.com/shoplit/shoplit/installation",
+    "section": "shoplit",
+    "path": "metronic/v9.4.5/shoplit/installation.md"
+  },
+  {
+    "title": "Prisma - Shoplit",
+    "url": "https://docs.keenthemes.com/shoplit/shoplit/prisma",
+    "section": "shoplit",
+    "path": "metronic/v9.4.5/shoplit/prisma.md"
+  },
+  {
+    "title": "References - Shoplit",
+    "url": "https://docs.keenthemes.com/shoplit/shoplit/references",
+    "section": "shoplit",
+    "path": "metronic/v9.4.5/shoplit/references.md"
+  },
+  {
+    "title": "Routing - Shoplit",
+    "url": "https://docs.keenthemes.com/shoplit/shoplit/routing",
+    "section": "shoplit",
+    "path": "metronic/v9.4.5/shoplit/routing.md"
+  },
+  {
+    "title": "RTL Support - Shoplit",
+    "url": "https://docs.keenthemes.com/shoplit/shoplit/rtl",
+    "section": "shoplit",
+    "path": "metronic/v9.4.5/shoplit/rtl.md"
+  },
+  {
+    "title": "Supabase - Shoplit",
+    "url": "https://docs.keenthemes.com/shoplit/shoplit/supabase",
+    "section": "shoplit",
+    "path": "metronic/v9.4.5/shoplit/supabase.md"
+  }
+]

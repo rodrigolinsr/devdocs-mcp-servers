@@ -1,0 +1,944 @@
+[
+  {
+    "title": "Create action - Actions - Filament",
+    "url": "https://filamentphp.com/docs/5.x/actions/create",
+    "section": "actions",
+    "path": "docs/filamentphp/v5/actions/create.md"
+  },
+  {
+    "title": "Delete action - Actions - Filament",
+    "url": "https://filamentphp.com/docs/5.x/actions/delete",
+    "section": "actions",
+    "path": "docs/filamentphp/v5/actions/delete.md"
+  },
+  {
+    "title": "Edit action - Actions - Filament",
+    "url": "https://filamentphp.com/docs/5.x/actions/edit",
+    "section": "actions",
+    "path": "docs/filamentphp/v5/actions/edit.md"
+  },
+  {
+    "title": "Export action - Actions - Filament",
+    "url": "https://filamentphp.com/docs/5.x/actions/export",
+    "section": "actions",
+    "path": "docs/filamentphp/v5/actions/export.md"
+  },
+  {
+    "title": "Force-delete action - Actions - Filament",
+    "url": "https://filamentphp.com/docs/5.x/actions/force-delete",
+    "section": "actions",
+    "path": "docs/filamentphp/v5/actions/force-delete.md"
+  },
+  {
+    "title": "Grouping actions - Actions - Filament",
+    "url": "https://filamentphp.com/docs/5.x/actions/grouping-actions",
+    "section": "actions",
+    "path": "docs/filamentphp/v5/actions/grouping-actions.md"
+  },
+  {
+    "title": "Import action - Actions - Filament",
+    "url": "https://filamentphp.com/docs/5.x/actions/import",
+    "section": "actions",
+    "path": "docs/filamentphp/v5/actions/import.md"
+  },
+  {
+    "title": "Modals - Actions - Filament",
+    "url": "https://filamentphp.com/docs/5.x/actions/modals",
+    "section": "actions",
+    "path": "docs/filamentphp/v5/actions/modals.md"
+  },
+  {
+    "title": "Overview - Actions - Filament",
+    "url": "https://filamentphp.com/docs/5.x/actions/overview",
+    "section": "actions",
+    "path": "docs/filamentphp/v5/actions/overview.md"
+  },
+  {
+    "title": "Replicate action - Actions - Filament",
+    "url": "https://filamentphp.com/docs/5.x/actions/replicate",
+    "section": "actions",
+    "path": "docs/filamentphp/v5/actions/replicate.md"
+  },
+  {
+    "title": "Restore action - Actions - Filament",
+    "url": "https://filamentphp.com/docs/5.x/actions/restore",
+    "section": "actions",
+    "path": "docs/filamentphp/v5/actions/restore.md"
+  },
+  {
+    "title": "View action - Actions - Filament",
+    "url": "https://filamentphp.com/docs/5.x/actions/view",
+    "section": "actions",
+    "path": "docs/filamentphp/v5/actions/view.md"
+  },
+  {
+    "title": "Registering assets - Advanced - Filament",
+    "url": "https://filamentphp.com/docs/5.x/advanced/assets",
+    "section": "advanced",
+    "path": "docs/filamentphp/v5/advanced/assets.md"
+  },
+  {
+    "title": "Enum tricks - Advanced - Filament",
+    "url": "https://filamentphp.com/docs/5.x/advanced/enums",
+    "section": "advanced",
+    "path": "docs/filamentphp/v5/advanced/enums.md"
+  },
+  {
+    "title": "File generation - Advanced - Filament",
+    "url": "https://filamentphp.com/docs/5.x/advanced/file-generation",
+    "section": "advanced",
+    "path": "docs/filamentphp/v5/advanced/file-generation.md"
+  },
+  {
+    "title": "Modular architecture (DDD) - Advanced - Filament",
+    "url": "https://filamentphp.com/docs/5.x/advanced/modular-architecture",
+    "section": "advanced",
+    "path": "docs/filamentphp/v5/advanced/modular-architecture.md"
+  },
+  {
+    "title": "Render hooks - Advanced - Filament",
+    "url": "https://filamentphp.com/docs/5.x/advanced/render-hooks",
+    "section": "advanced",
+    "path": "docs/filamentphp/v5/advanced/render-hooks.md"
+  },
+  {
+    "title": "Rendering an action in a Livewire component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/action",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/action.md"
+  },
+  {
+    "title": "Avatar Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/avatar",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/avatar.md"
+  },
+  {
+    "title": "Badge Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/badge",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/badge.md"
+  },
+  {
+    "title": "Breadcrumbs Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/breadcrumbs",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/breadcrumbs.md"
+  },
+  {
+    "title": "Button Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/button",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/button.md"
+  },
+  {
+    "title": "Checkbox Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/checkbox",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/checkbox.md"
+  },
+  {
+    "title": "Dropdown Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/dropdown",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/dropdown.md"
+  },
+  {
+    "title": "Empty State Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/empty-state",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/empty-state.md"
+  },
+  {
+    "title": "Fieldset Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/fieldset",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/fieldset.md"
+  },
+  {
+    "title": "Rendering a form in a Blade view - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/form",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/form.md"
+  },
+  {
+    "title": "Icon button Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/icon-button",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/icon-button.md"
+  },
+  {
+    "title": "Rendering an infolist in a Blade view - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/infolist",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/infolist.md"
+  },
+  {
+    "title": "Input wrapper Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/input-wrapper",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/input-wrapper.md"
+  },
+  {
+    "title": "Input Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/input",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/input.md"
+  },
+  {
+    "title": "Link Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/link",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/link.md"
+  },
+  {
+    "title": "Loading indicator Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/loading-indicator",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/loading-indicator.md"
+  },
+  {
+    "title": "Modal Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/modal",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/modal.md"
+  },
+  {
+    "title": "Rendering notifications outside of a panel - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/notifications",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/notifications.md"
+  },
+  {
+    "title": "Overview - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/overview",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/overview.md"
+  },
+  {
+    "title": "Pagination Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/pagination",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/pagination.md"
+  },
+  {
+    "title": "Rendering a schema in a Blade view - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/schema",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/schema.md"
+  },
+  {
+    "title": "Section Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/section",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/section.md"
+  },
+  {
+    "title": "Select Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/select",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/select.md"
+  },
+  {
+    "title": "Rendering a table in a Blade view - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/table",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/table.md"
+  },
+  {
+    "title": "Tabs Blade component - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/tabs",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/tabs.md"
+  },
+  {
+    "title": "Rendering a widget in a Blade view - Components - Filament",
+    "url": "https://filamentphp.com/docs/5.x/components/widget",
+    "section": "components",
+    "path": "docs/filamentphp/v5/components/widget.md"
+  },
+  {
+    "title": "Deploying to production - Filament",
+    "url": "https://filamentphp.com/docs/5.x/deployment",
+    "section": "deployment",
+    "path": "docs/filamentphp/v5/deployment.md"
+  },
+  {
+    "title": "Builder - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/builder",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/builder.md"
+  },
+  {
+    "title": "Checkbox list - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/checkbox-list",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/checkbox-list.md"
+  },
+  {
+    "title": "Checkbox - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/checkbox",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/checkbox.md"
+  },
+  {
+    "title": "Code editor - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/code-editor",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/code-editor.md"
+  },
+  {
+    "title": "Color picker - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/color-picker",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/color-picker.md"
+  },
+  {
+    "title": "Custom fields - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/custom-fields",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/custom-fields.md"
+  },
+  {
+    "title": "Date-time picker - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/date-time-picker",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/date-time-picker.md"
+  },
+  {
+    "title": "File upload - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/file-upload",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/file-upload.md"
+  },
+  {
+    "title": "Hidden - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/hidden",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/hidden.md"
+  },
+  {
+    "title": "Key-value - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/key-value",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/key-value.md"
+  },
+  {
+    "title": "Markdown editor - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/markdown-editor",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/markdown-editor.md"
+  },
+  {
+    "title": "Overview - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/overview",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/overview.md"
+  },
+  {
+    "title": "Radio - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/radio",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/radio.md"
+  },
+  {
+    "title": "Repeater - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/repeater",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/repeater.md"
+  },
+  {
+    "title": "Rich editor - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/rich-editor",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/rich-editor.md"
+  },
+  {
+    "title": "Select - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/select",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/select.md"
+  },
+  {
+    "title": "Slider - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/slider",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/slider.md"
+  },
+  {
+    "title": "Tags input - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/tags-input",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/tags-input.md"
+  },
+  {
+    "title": "Text input - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/text-input",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/text-input.md"
+  },
+  {
+    "title": "Textarea - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/textarea",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/textarea.md"
+  },
+  {
+    "title": "Toggle buttons - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/toggle-buttons",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/toggle-buttons.md"
+  },
+  {
+    "title": "Toggle - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/toggle",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/toggle.md"
+  },
+  {
+    "title": "Validation - Forms - Filament",
+    "url": "https://filamentphp.com/docs/5.x/forms/validation",
+    "section": "forms",
+    "path": "docs/filamentphp/v5/forms/validation.md"
+  },
+  {
+    "title": "Getting started - Filament",
+    "url": "https://filamentphp.com/docs/5.x/getting-started",
+    "section": "getting-started",
+    "path": "docs/filamentphp/v5/getting-started.md"
+  },
+  {
+    "title": "Code entry - Infolists - Filament",
+    "url": "https://filamentphp.com/docs/5.x/infolists/code-entry",
+    "section": "infolists",
+    "path": "docs/filamentphp/v5/infolists/code-entry.md"
+  },
+  {
+    "title": "Color entry - Infolists - Filament",
+    "url": "https://filamentphp.com/docs/5.x/infolists/color-entry",
+    "section": "infolists",
+    "path": "docs/filamentphp/v5/infolists/color-entry.md"
+  },
+  {
+    "title": "Custom entries - Infolists - Filament",
+    "url": "https://filamentphp.com/docs/5.x/infolists/custom-entries",
+    "section": "infolists",
+    "path": "docs/filamentphp/v5/infolists/custom-entries.md"
+  },
+  {
+    "title": "Icon entry - Infolists - Filament",
+    "url": "https://filamentphp.com/docs/5.x/infolists/icon-entry",
+    "section": "infolists",
+    "path": "docs/filamentphp/v5/infolists/icon-entry.md"
+  },
+  {
+    "title": "Image entry - Infolists - Filament",
+    "url": "https://filamentphp.com/docs/5.x/infolists/image-entry",
+    "section": "infolists",
+    "path": "docs/filamentphp/v5/infolists/image-entry.md"
+  },
+  {
+    "title": "Key-value entry - Infolists - Filament",
+    "url": "https://filamentphp.com/docs/5.x/infolists/key-value-entry",
+    "section": "infolists",
+    "path": "docs/filamentphp/v5/infolists/key-value-entry.md"
+  },
+  {
+    "title": "Overview - Infolists - Filament",
+    "url": "https://filamentphp.com/docs/5.x/infolists/overview",
+    "section": "infolists",
+    "path": "docs/filamentphp/v5/infolists/overview.md"
+  },
+  {
+    "title": "Repeatable entry - Infolists - Filament",
+    "url": "https://filamentphp.com/docs/5.x/infolists/repeatable-entry",
+    "section": "infolists",
+    "path": "docs/filamentphp/v5/infolists/repeatable-entry.md"
+  },
+  {
+    "title": "Text entry - Infolists - Filament",
+    "url": "https://filamentphp.com/docs/5.x/infolists/text-entry",
+    "section": "infolists",
+    "path": "docs/filamentphp/v5/infolists/text-entry.md"
+  },
+  {
+    "title": "AI-assisted development - Introduction - Filament",
+    "url": "https://filamentphp.com/docs/5.x/introduction/ai",
+    "section": "introduction",
+    "path": "docs/filamentphp/v5/introduction/ai.md"
+  },
+  {
+    "title": "Contributing - Introduction - Filament",
+    "url": "https://filamentphp.com/docs/5.x/introduction/contributing",
+    "section": "introduction",
+    "path": "docs/filamentphp/v5/introduction/contributing.md"
+  },
+  {
+    "title": "Help - Introduction - Filament",
+    "url": "https://filamentphp.com/docs/5.x/introduction/help",
+    "section": "introduction",
+    "path": "docs/filamentphp/v5/introduction/help.md"
+  },
+  {
+    "title": "Installation - Introduction - Filament",
+    "url": "https://filamentphp.com/docs/5.x/introduction/installation",
+    "section": "introduction",
+    "path": "docs/filamentphp/v5/introduction/installation.md"
+  },
+  {
+    "title": "Optimizing local development - Introduction - Filament",
+    "url": "https://filamentphp.com/docs/5.x/introduction/optimizing-local-development",
+    "section": "introduction",
+    "path": "docs/filamentphp/v5/introduction/optimizing-local-development.md"
+  },
+  {
+    "title": "What is Filament? - Introduction - Filament",
+    "url": "https://filamentphp.com/docs/5.x/introduction/overview",
+    "section": "introduction",
+    "path": "docs/filamentphp/v5/introduction/overview.md"
+  },
+  {
+    "title": "Version support policy - Introduction - Filament",
+    "url": "https://filamentphp.com/docs/5.x/introduction/version-support-policy",
+    "section": "introduction",
+    "path": "docs/filamentphp/v5/introduction/version-support-policy.md"
+  },
+  {
+    "title": "Clusters - Navigation - Filament",
+    "url": "https://filamentphp.com/docs/5.x/navigation/clusters",
+    "section": "navigation",
+    "path": "docs/filamentphp/v5/navigation/clusters.md"
+  },
+  {
+    "title": "Custom pages - Navigation - Filament",
+    "url": "https://filamentphp.com/docs/5.x/navigation/custom-pages",
+    "section": "navigation",
+    "path": "docs/filamentphp/v5/navigation/custom-pages.md"
+  },
+  {
+    "title": "Overview - Navigation - Filament",
+    "url": "https://filamentphp.com/docs/5.x/navigation/overview",
+    "section": "navigation",
+    "path": "docs/filamentphp/v5/navigation/overview.md"
+  },
+  {
+    "title": "User menu - Navigation - Filament",
+    "url": "https://filamentphp.com/docs/5.x/navigation/user-menu",
+    "section": "navigation",
+    "path": "docs/filamentphp/v5/navigation/user-menu.md"
+  },
+  {
+    "title": "Broadcast notifications - Notifications - Filament",
+    "url": "https://filamentphp.com/docs/5.x/notifications/broadcast-notifications",
+    "section": "notifications",
+    "path": "docs/filamentphp/v5/notifications/broadcast-notifications.md"
+  },
+  {
+    "title": "Database notifications - Notifications - Filament",
+    "url": "https://filamentphp.com/docs/5.x/notifications/database-notifications",
+    "section": "notifications",
+    "path": "docs/filamentphp/v5/notifications/database-notifications.md"
+  },
+  {
+    "title": "Overview - Notifications - Filament",
+    "url": "https://filamentphp.com/docs/5.x/notifications/overview",
+    "section": "notifications",
+    "path": "docs/filamentphp/v5/notifications/overview.md"
+  },
+  {
+    "title": "Panel configuration - Filament",
+    "url": "https://filamentphp.com/docs/5.x/panel-configuration",
+    "section": "panel-configuration",
+    "path": "docs/filamentphp/v5/panel-configuration.md"
+  },
+  {
+    "title": "Build a panel plugin - Plugins - Filament",
+    "url": "https://filamentphp.com/docs/5.x/plugins/building-a-panel-plugin",
+    "section": "plugins",
+    "path": "docs/filamentphp/v5/plugins/building-a-panel-plugin.md"
+  },
+  {
+    "title": "Build a standalone plugin - Plugins - Filament",
+    "url": "https://filamentphp.com/docs/5.x/plugins/building-a-standalone-plugin",
+    "section": "plugins",
+    "path": "docs/filamentphp/v5/plugins/building-a-standalone-plugin.md"
+  },
+  {
+    "title": "Getting started - Plugins - Filament",
+    "url": "https://filamentphp.com/docs/5.x/plugins/getting-started",
+    "section": "plugins",
+    "path": "docs/filamentphp/v5/plugins/getting-started.md"
+  },
+  {
+    "title": "Plugin development - Plugins - Filament",
+    "url": "https://filamentphp.com/docs/5.x/plugins/panel-plugins",
+    "section": "plugins",
+    "path": "docs/filamentphp/v5/plugins/panel-plugins.md"
+  },
+  {
+    "title": "Code quality tips - Resources - Filament",
+    "url": "https://filamentphp.com/docs/5.x/resources/code-quality-tips",
+    "section": "resources",
+    "path": "docs/filamentphp/v5/resources/code-quality-tips.md"
+  },
+  {
+    "title": "Creating records - Resources - Filament",
+    "url": "https://filamentphp.com/docs/5.x/resources/creating-records",
+    "section": "resources",
+    "path": "docs/filamentphp/v5/resources/creating-records.md"
+  },
+  {
+    "title": "Custom resource pages - Resources - Filament",
+    "url": "https://filamentphp.com/docs/5.x/resources/custom-pages",
+    "section": "resources",
+    "path": "docs/filamentphp/v5/resources/custom-pages.md"
+  },
+  {
+    "title": "Deleting records - Resources - Filament",
+    "url": "https://filamentphp.com/docs/5.x/resources/deleting-records",
+    "section": "resources",
+    "path": "docs/filamentphp/v5/resources/deleting-records.md"
+  },
+  {
+    "title": "Editing records - Resources - Filament",
+    "url": "https://filamentphp.com/docs/5.x/resources/editing-records",
+    "section": "resources",
+    "path": "docs/filamentphp/v5/resources/editing-records.md"
+  },
+  {
+    "title": "Global search - Resources - Filament",
+    "url": "https://filamentphp.com/docs/5.x/resources/global-search",
+    "section": "resources",
+    "path": "docs/filamentphp/v5/resources/global-search.md"
+  },
+  {
+    "title": "Listing records - Resources - Filament",
+    "url": "https://filamentphp.com/docs/5.x/resources/listing-records",
+    "section": "resources",
+    "path": "docs/filamentphp/v5/resources/listing-records.md"
+  },
+  {
+    "title": "Managing relationships - Resources - Filament",
+    "url": "https://filamentphp.com/docs/5.x/resources/managing-relationships",
+    "section": "resources",
+    "path": "docs/filamentphp/v5/resources/managing-relationships.md"
+  },
+  {
+    "title": "Nested resources - Resources - Filament",
+    "url": "https://filamentphp.com/docs/5.x/resources/nesting",
+    "section": "resources",
+    "path": "docs/filamentphp/v5/resources/nesting.md"
+  },
+  {
+    "title": "Overview - Resources - Filament",
+    "url": "https://filamentphp.com/docs/5.x/resources/overview",
+    "section": "resources",
+    "path": "docs/filamentphp/v5/resources/overview.md"
+  },
+  {
+    "title": "Singular resources - Resources - Filament",
+    "url": "https://filamentphp.com/docs/5.x/resources/singular",
+    "section": "resources",
+    "path": "docs/filamentphp/v5/resources/singular.md"
+  },
+  {
+    "title": "Viewing records - Resources - Filament",
+    "url": "https://filamentphp.com/docs/5.x/resources/viewing-records",
+    "section": "resources",
+    "path": "docs/filamentphp/v5/resources/viewing-records.md"
+  },
+  {
+    "title": "Using widgets on resource pages - Resources - Filament",
+    "url": "https://filamentphp.com/docs/5.x/resources/widgets",
+    "section": "resources",
+    "path": "docs/filamentphp/v5/resources/widgets.md"
+  },
+  {
+    "title": "Custom components - Schemas - Filament",
+    "url": "https://filamentphp.com/docs/5.x/schemas/custom-components",
+    "section": "schemas",
+    "path": "docs/filamentphp/v5/schemas/custom-components.md"
+  },
+  {
+    "title": "Empty states - Schemas - Filament",
+    "url": "https://filamentphp.com/docs/5.x/schemas/empty-states",
+    "section": "schemas",
+    "path": "docs/filamentphp/v5/schemas/empty-states.md"
+  },
+  {
+    "title": "Layouts - Schemas - Filament",
+    "url": "https://filamentphp.com/docs/5.x/schemas/layouts",
+    "section": "schemas",
+    "path": "docs/filamentphp/v5/schemas/layouts.md"
+  },
+  {
+    "title": "Overview - Schemas - Filament",
+    "url": "https://filamentphp.com/docs/5.x/schemas/overview",
+    "section": "schemas",
+    "path": "docs/filamentphp/v5/schemas/overview.md"
+  },
+  {
+    "title": "Prime components - Schemas - Filament",
+    "url": "https://filamentphp.com/docs/5.x/schemas/primes",
+    "section": "schemas",
+    "path": "docs/filamentphp/v5/schemas/primes.md"
+  },
+  {
+    "title": "Sections - Schemas - Filament",
+    "url": "https://filamentphp.com/docs/5.x/schemas/sections",
+    "section": "schemas",
+    "path": "docs/filamentphp/v5/schemas/sections.md"
+  },
+  {
+    "title": "Tabs - Schemas - Filament",
+    "url": "https://filamentphp.com/docs/5.x/schemas/tabs",
+    "section": "schemas",
+    "path": "docs/filamentphp/v5/schemas/tabs.md"
+  },
+  {
+    "title": "Wizards - Schemas - Filament",
+    "url": "https://filamentphp.com/docs/5.x/schemas/wizards",
+    "section": "schemas",
+    "path": "docs/filamentphp/v5/schemas/wizards.md"
+  },
+  {
+    "title": "Colors - Customizing styling - Filament",
+    "url": "https://filamentphp.com/docs/5.x/styling/colors",
+    "section": "styling",
+    "path": "docs/filamentphp/v5/styling/colors.md"
+  },
+  {
+    "title": "CSS hooks - Customizing styling - Filament",
+    "url": "https://filamentphp.com/docs/5.x/styling/css-hooks",
+    "section": "styling",
+    "path": "docs/filamentphp/v5/styling/css-hooks.md"
+  },
+  {
+    "title": "Icons - Customizing styling - Filament",
+    "url": "https://filamentphp.com/docs/5.x/styling/icons",
+    "section": "styling",
+    "path": "docs/filamentphp/v5/styling/icons.md"
+  },
+  {
+    "title": "Overview - Customizing styling - Filament",
+    "url": "https://filamentphp.com/docs/5.x/styling/overview",
+    "section": "styling",
+    "path": "docs/filamentphp/v5/styling/overview.md"
+  },
+  {
+    "title": "Actions - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/actions",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/actions.md"
+  },
+  {
+    "title": "Checkbox column - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/columns/checkbox",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/columns/checkbox.md"
+  },
+  {
+    "title": "Color column - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/columns/color",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/columns/color.md"
+  },
+  {
+    "title": "Custom columns - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/columns/custom-columns",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/columns/custom-columns.md"
+  },
+  {
+    "title": "Icon column - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/columns/icon",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/columns/icon.md"
+  },
+  {
+    "title": "Image column - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/columns/image",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/columns/image.md"
+  },
+  {
+    "title": "Overview - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/columns/overview",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/columns/overview.md"
+  },
+  {
+    "title": "Select column - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/columns/select",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/columns/select.md"
+  },
+  {
+    "title": "Text input column - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/columns/text-input",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/columns/text-input.md"
+  },
+  {
+    "title": "Text column - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/columns/text",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/columns/text.md"
+  },
+  {
+    "title": "Toggle column - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/columns/toggle",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/columns/toggle.md"
+  },
+  {
+    "title": "Custom data - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/custom-data",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/custom-data.md"
+  },
+  {
+    "title": "Empty state - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/empty-state",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/empty-state.md"
+  },
+  {
+    "title": "Custom filters - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/filters/custom",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/filters/custom.md"
+  },
+  {
+    "title": "Filter layout - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/filters/layout",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/filters/layout.md"
+  },
+  {
+    "title": "Overview - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/filters/overview",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/filters/overview.md"
+  },
+  {
+    "title": "Query builder - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/filters/query-builder",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/filters/query-builder.md"
+  },
+  {
+    "title": "Select filters - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/filters/select",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/filters/select.md"
+  },
+  {
+    "title": "Ternary filters - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/filters/ternary",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/filters/ternary.md"
+  },
+  {
+    "title": "Grouping rows - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/grouping",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/grouping.md"
+  },
+  {
+    "title": "Layout - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/layout",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/layout.md"
+  },
+  {
+    "title": "Overview - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/overview",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/overview.md"
+  },
+  {
+    "title": "Summaries - Tables - Filament",
+    "url": "https://filamentphp.com/docs/5.x/tables/summaries",
+    "section": "tables",
+    "path": "docs/filamentphp/v5/tables/summaries.md"
+  },
+  {
+    "title": "Overview - Testing - Filament",
+    "url": "https://filamentphp.com/docs/5.x/testing/overview",
+    "section": "testing",
+    "path": "docs/filamentphp/v5/testing/overview.md"
+  },
+  {
+    "title": "Testing actions - Testing - Filament",
+    "url": "https://filamentphp.com/docs/5.x/testing/testing-actions",
+    "section": "testing",
+    "path": "docs/filamentphp/v5/testing/testing-actions.md"
+  },
+  {
+    "title": "Testing notifications - Testing - Filament",
+    "url": "https://filamentphp.com/docs/5.x/testing/testing-notifications",
+    "section": "testing",
+    "path": "docs/filamentphp/v5/testing/testing-notifications.md"
+  },
+  {
+    "title": "Testing resources - Testing - Filament",
+    "url": "https://filamentphp.com/docs/5.x/testing/testing-resources",
+    "section": "testing",
+    "path": "docs/filamentphp/v5/testing/testing-resources.md"
+  },
+  {
+    "title": "Testing schemas - Testing - Filament",
+    "url": "https://filamentphp.com/docs/5.x/testing/testing-schemas",
+    "section": "testing",
+    "path": "docs/filamentphp/v5/testing/testing-schemas.md"
+  },
+  {
+    "title": "Testing tables - Testing - Filament",
+    "url": "https://filamentphp.com/docs/5.x/testing/testing-tables",
+    "section": "testing",
+    "path": "docs/filamentphp/v5/testing/testing-tables.md"
+  },
+  {
+    "title": "Upgrade guide - Filament",
+    "url": "https://filamentphp.com/docs/5.x/upgrade-guide",
+    "section": "upgrade-guide",
+    "path": "docs/filamentphp/v5/upgrade-guide.md"
+  },
+  {
+    "title": "Multi-factor authentication - Users - Filament",
+    "url": "https://filamentphp.com/docs/5.x/users/multi-factor-authentication",
+    "section": "users",
+    "path": "docs/filamentphp/v5/users/multi-factor-authentication.md"
+  },
+  {
+    "title": "Overview - Users - Filament",
+    "url": "https://filamentphp.com/docs/5.x/users/overview",
+    "section": "users",
+    "path": "docs/filamentphp/v5/users/overview.md"
+  },
+  {
+    "title": "Multi-tenancy - Users - Filament",
+    "url": "https://filamentphp.com/docs/5.x/users/tenancy",
+    "section": "users",
+    "path": "docs/filamentphp/v5/users/tenancy.md"
+  },
+  {
+    "title": "Chart widgets - Widgets - Filament",
+    "url": "https://filamentphp.com/docs/5.x/widgets/charts",
+    "section": "widgets",
+    "path": "docs/filamentphp/v5/widgets/charts.md"
+  },
+  {
+    "title": "Overview - Widgets - Filament",
+    "url": "https://filamentphp.com/docs/5.x/widgets/overview",
+    "section": "widgets",
+    "path": "docs/filamentphp/v5/widgets/overview.md"
+  },
+  {
+    "title": "Stats overview widgets - Widgets - Filament",
+    "url": "https://filamentphp.com/docs/5.x/widgets/stats-overview",
+    "section": "widgets",
+    "path": "docs/filamentphp/v5/widgets/stats-overview.md"
+  }
+]

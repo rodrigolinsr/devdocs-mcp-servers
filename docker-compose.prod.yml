@@ -1,0 +1,16 @@
+services:
+  filamentphp-mcp:
+    image: ghcr.io/rodrigolinsr/filamentphp-mcp:latest
+    container_name: filamentphp-mcp
+    pull_policy: always
+    expose:
+      - "8000"
+    restart: always
+
+  metronic-mcp:
+    image: ghcr.io/rodrigolinsr/metronic-mcp:latest
+    container_name: metronic-mcp
+    pull_policy: always
+    expose:
+      - "8000"
+    restart: always

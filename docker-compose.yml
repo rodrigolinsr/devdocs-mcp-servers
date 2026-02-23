@@ -1,0 +1,20 @@
+services:
+  filamentphp-mcp:
+    build:
+      context: ./filamentphp
+      dockerfile: ./mcp/Dockerfile
+    image: filamentphp-mcp:local
+    container_name: filamentphp-mcp
+    ports:
+      - "8001:8000"
+    restart: unless-stopped
+
+  metronic-mcp:
+    build:
+      context: ./metronic
+      dockerfile: ./mcp/Dockerfile
+    image: metronic-mcp:local
+    container_name: metronic-mcp
+    ports:
+      - "8002:8000"
+    restart: unless-stopped
