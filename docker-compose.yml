@@ -8,6 +8,10 @@ services:
     ports:
       - "8001:8000"
     restart: unless-stopped
+    mem_limit: ${MCP_MEMORY_LIMIT:-512m}
+    memswap_limit: ${MCP_MEMORY_LIMIT:-512m}
+    cpus: ${MCP_CPUS:-1.0}
+    pids_limit: ${MCP_PIDS_LIMIT:-128}
     logging:
       driver: json-file
       options:
@@ -23,6 +27,10 @@ services:
     ports:
       - "8002:8000"
     restart: unless-stopped
+    mem_limit: ${MCP_MEMORY_LIMIT:-512m}
+    memswap_limit: ${MCP_MEMORY_LIMIT:-512m}
+    cpus: ${MCP_CPUS:-1.0}
+    pids_limit: ${MCP_PIDS_LIMIT:-128}
     logging:
       driver: json-file
       options:

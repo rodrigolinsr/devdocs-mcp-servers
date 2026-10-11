@@ -30,6 +30,10 @@ jobs:
         run: docker build -f ${{ matrix.name }}/mcp/Dockerfile -t ${{ matrix.name }}-mcp:recovery-test ${{ matrix.name }}
       - name: Test process failure and hang recovery
         run: node --test --test-name-pattern '^${{ matrix.name }}:' tests/container-recovery.test.mjs
+      - name: Test HTTP admission, timeout and cancellation
+        run: docker run --rm --entrypoint node --mount type=bind,source=${{ github.workspace }}/tests,target=/tests,readonly ${{ matrix.name }}-mcp:recovery-test --test /tests/http-limits.test.mjs
+      - name: Profile bounded sustained workload
+        run: node tests/resource-profile.mjs ${{ matrix.name }}-mcp:recovery-test 60
 
   build:
     needs: recovery-test

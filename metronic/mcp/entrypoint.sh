@@ -2,20 +2,14 @@
 set -eu
 
 cleanup() {
-  kill "${gateway_pid:-}" "${nginx_pid:-}" "${watchdog_pid:-}" 2>/dev/null || true
+  kill "${server_pid:-}" "${nginx_pid:-}" "${watchdog_pid:-}" 2>/dev/null || true
 }
 trap cleanup EXIT
 trap 'exit 143' TERM
 trap 'exit 130' INT
 
-supergateway \
-  --stdio "node /app/mcp/build/index.js" \
-  --outputTransport streamableHttp \
-  --port 5000 \
-  --streamableHttpPath /mcp \
-  --healthEndpoint /healthz \
-  --logLevel info &
-gateway_pid=$!
+node --max-old-space-size=192 /app/mcp/build/index.js --http &
+server_pid=$!
 
 nginx -g 'daemon off;' &
 nginx_pid=$!
@@ -39,6 +33,6 @@ nginx_pid=$!
 ) &
 watchdog_pid=$!
 
-wait -n "$gateway_pid" "$nginx_pid" "$watchdog_pid" || true
+wait -n "$server_pid" "$nginx_pid" "$watchdog_pid" || true
 echo 'An essential MCP process stopped; restarting container.' >&2
 exit 1

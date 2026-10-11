@@ -9,6 +9,7 @@ import { fileURLToPath } from "node:url";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
+import { serveHttp } from "./http.js";
 
 type IndexEntry = {
   title: string;
@@ -31,11 +32,6 @@ const __dirname = path.dirname(__filename);
 const DEFAULT_DOCS_ROOT = path.resolve(__dirname, "../../docs/filamentphp/v5");
 const DOCS_ROOT = path.resolve(process.env.FILAMENT_DOCS_ROOT ?? DEFAULT_DOCS_ROOT);
 const DOCS_VERSION_PATH = "docs/filamentphp/v5/";
-
-const server = new McpServer({
-  name: "filamentphp-v5-docs",
-  version: "1.0.0"
-});
 
 let docsCache: LoadedDoc[] | null = null;
 
@@ -203,7 +199,10 @@ async function readJsonlContentMap(jsonlPath: string): Promise<Map<string, strin
   }
 
   const stream = createReadStream(jsonlPath, { encoding: "utf8" });
-  const lineReader = readline.createInterface({ input: stream, crlfDelay: Infinity });
+  const lineReader = readline.createInterface({
+    input: stream,
+    crlfDelay: Infinity
+  });
 
   for await (const line of lineReader) {
     const trimmed = line.trim();
@@ -212,7 +211,9 @@ async function readJsonlContentMap(jsonlPath: string): Promise<Map<string, strin
     }
 
     try {
-      const parsed = JSON.parse(trimmed) as Partial<IndexEntry> & { content?: string };
+      const parsed = JSON.parse(trimmed) as Partial<IndexEntry> & {
+        content?: string;
+      };
       if (typeof parsed.path === "string" && typeof parsed.content === "string") {
         map.set(parsed.path, parsed.content);
       }
@@ -232,10 +233,7 @@ async function loadDocs(): Promise<LoadedDoc[]> {
   const indexPath = path.join(DOCS_ROOT, "index.json");
   const jsonlPath = path.join(DOCS_ROOT, "index.jsonl");
 
-  const [indexRaw, contentMap] = await Promise.all([
-    readFile(indexPath, "utf8"),
-    readJsonlContentMap(jsonlPath)
-  ]);
+  const [indexRaw, contentMap] = await Promise.all([readFile(indexPath, "utf8"), readJsonlContentMap(jsonlPath)]);
 
   const entries = JSON.parse(indexRaw) as IndexEntry[];
 
@@ -291,7 +289,7 @@ function findDoc(docs: LoadedDoc[], identifier: string): LoadedDoc | undefined {
   return undefined;
 }
 
-async function registerResources(): Promise<void> {
+async function registerResources(server: McpServer): Promise<void> {
   const docs = await loadDocs();
 
   server.registerResource(
@@ -349,254 +347,250 @@ async function registerResources(): Promise<void> {
   }
 }
 
-server.registerTool(
-  "list_sections",
-  {
-    description: "List all Filament v5 documentation sections and document counts"
-  },
-  async () => {
-    const docs = await loadDocs();
+export async function createServer(): Promise<McpServer> {
+  const server = new McpServer({
+    name: "filamentphp-v5-docs",
+    version: "1.0.0"
+  });
+  server.registerTool(
+    "list_sections",
+    {
+      description: "List all Filament v5 documentation sections and document counts"
+    },
+    async () => {
+      const docs = await loadDocs();
 
-    const sectionMap = new Map<string, number>();
-    for (const doc of docs) {
-      sectionMap.set(doc.section, (sectionMap.get(doc.section) ?? 0) + 1);
-    }
+      const sectionMap = new Map<string, number>();
+      for (const doc of docs) {
+        sectionMap.set(doc.section, (sectionMap.get(doc.section) ?? 0) + 1);
+      }
 
-    const rows = Array.from(sectionMap.entries()).sort(([a], [b]) => a.localeCompare(b));
-    const lines = rows.map(([section, count]) => `- ${section}: ${count}`);
+      const rows = Array.from(sectionMap.entries()).sort(([a], [b]) => a.localeCompare(b));
+      const lines = rows.map(([section, count]) => `- ${section}: ${count}`);
 
-    return {
-      content: [
-        {
-          type: "text",
-          text: `Filament v5 sections (${rows.length}):\n${lines.join("\n")}`
-        }
-      ]
-    };
-  }
-);
-
-server.registerTool(
-  "list_docs",
-  {
-    description: "List documentation pages, optionally filtered by section",
-    inputSchema: {
-      section: z.string().optional().describe("Optional section filter, e.g. forms, tables, resources"),
-      limit: z.number().int().min(1).max(200).default(50).describe("Maximum number of docs to return"),
-      offset: z.number().int().min(0).default(0).describe("Pagination offset")
-    }
-  },
-  async ({ section, limit, offset }) => {
-    const docs = await loadDocs();
-    const normalizedSection = section ? normalizeString(section) : undefined;
-
-    const filtered = normalizedSection
-      ? docs.filter((doc) => normalizeString(doc.section) === normalizedSection)
-      : docs;
-
-    const page = filtered.slice(offset, offset + limit);
-    const lines = page.map(
-      (doc, index) =>
-        `${offset + index + 1}. [${doc.section}] ${doc.title} | slug=${doc.slug} | path=${doc.relativePath}`
-    );
-
-    return {
-      content: [
-        {
-          type: "text",
-          text:
-            `Showing ${page.length} of ${filtered.length} docs` +
-            (normalizedSection ? ` in section "${normalizedSection}"` : "") +
-            ` (offset=${offset}, limit=${limit}).\n\n${lines.join("\n")}`
-        },
-        ...page.map((doc) => ({
-          type: "resource_link" as const,
-          uri: doc.resourceUri,
-          name: doc.title,
-          description: `${doc.section} | ${doc.url}`,
-          mimeType: "text/markdown"
-        }))
-      ]
-    };
-  }
-);
-
-server.registerTool(
-  "search_docs",
-  {
-    description: "Search Filament v5 docs by title, slug, path, URL and markdown content",
-    inputSchema: {
-      query: z.string().min(2).describe("Search text, e.g. table filters, resource widgets, panel auth"),
-      section: z.string().optional().describe("Optional section filter"),
-      limit: z.number().int().min(1).max(50).default(10).describe("Maximum number of search results"),
-      includeExcerpts: z.boolean().default(true).describe("Include a short text excerpt in each result")
-    }
-  },
-  async ({ query, section, limit, includeExcerpts }) => {
-    const docs = await loadDocs();
-    const normalizedSection = section ? normalizeString(section) : undefined;
-    const tokens = tokenize(query);
-
-    const scored = docs
-      .filter((doc) =>
-        normalizedSection ? normalizeString(doc.section) === normalizedSection : true
-      )
-      .map((doc) => ({ doc, score: scoreDoc(doc, query, tokens) }))
-      .filter((item) => item.score > 0)
-      .sort((a, b) => {
-        if (b.score !== a.score) {
-          return b.score - a.score;
-        }
-
-        return a.doc.title.localeCompare(b.doc.title);
-      })
-      .slice(0, limit);
-
-    if (scored.length === 0) {
       return {
         content: [
           {
             type: "text",
-            text: "No matching docs found. Try broader terms or remove the section filter."
+            text: `Filament v5 sections (${rows.length}):\n${lines.join("\n")}`
           }
         ]
       };
     }
+  );
 
-    const textLines: string[] = [];
-    const resourceLinks: Array<{
-      type: "resource_link";
-      uri: string;
-      name: string;
-      description: string;
-      mimeType: string;
-    }> = [];
-
-    textLines.push(`Found ${scored.length} matching docs for query: \"${query}\"`);
-    if (normalizedSection) {
-      textLines.push(`Section filter: ${normalizedSection}`);
-    }
-    textLines.push("");
-
-    for (let index = 0; index < scored.length; index += 1) {
-      const { doc, score } = scored[index];
-      textLines.push(
-        `${index + 1}. [score=${score}] [${doc.section}] ${doc.title}`
-      );
-      textLines.push(`   slug: ${doc.slug}`);
-      textLines.push(`   url: ${doc.url}`);
-
-      if (includeExcerpts) {
-        const fullContent = await getDocContent(doc);
-        const excerpt = makeExcerpt(fullContent, query);
-        if (excerpt) {
-          textLines.push(`   excerpt: ${excerpt}`);
-        }
+  server.registerTool(
+    "list_docs",
+    {
+      description: "List documentation pages, optionally filtered by section",
+      inputSchema: {
+        section: z.string().max(128).optional().describe("Optional section filter, e.g. forms, tables, resources"),
+        limit: z.number().int().min(1).max(200).default(50).describe("Maximum number of docs to return"),
+        offset: z.number().int().min(0).default(0).describe("Pagination offset")
       }
+    },
+    async ({ section, limit, offset }) => {
+      const docs = await loadDocs();
+      const normalizedSection = section ? normalizeString(section) : undefined;
 
-      textLines.push("");
+      const filtered = normalizedSection ? docs.filter((doc) => normalizeString(doc.section) === normalizedSection) : docs;
 
-      resourceLinks.push({
-        type: "resource_link",
-        uri: doc.resourceUri,
-        name: doc.title,
-        description: `${doc.section} | ${doc.url}`,
-        mimeType: "text/markdown"
-      });
-    }
-
-    return {
-      content: [
-        {
-          type: "text",
-          text: textLines.join("\n").trim()
-        },
-        ...resourceLinks
-      ]
-    };
-  }
-);
-
-server.registerTool(
-  "get_doc",
-  {
-    description:
-      "Fetch a Filament v5 markdown page by identifier (slug, title, URL, relative path or resource URI)",
-    inputSchema: {
-      identifier: z
-        .string()
-        .min(2)
-        .describe(
-          "Doc identifier. Examples: tables/filters/overview, actions/overview.md, full URL, page title"
-        ),
-      startLine: z.number().int().min(1).default(1).describe("First line number to return"),
-      lineCount: z.number().int().min(1).max(2000).default(400).describe("How many lines to return"),
-      maxChars: z.number().int().min(500).max(200000).default(50000).describe("Safety character limit")
-    }
-  },
-  async ({ identifier, startLine, lineCount, maxChars }) => {
-    const docs = await loadDocs();
-    const doc = findDoc(docs, identifier);
-
-    if (!doc) {
-      const tokens = tokenize(identifier);
-      const suggestions = docs
-        .map((item) => ({ item, score: scoreDoc(item, identifier, tokens) }))
-        .filter((item) => item.score > 0)
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 5)
-        .map((item) => `- ${item.item.title} (slug=${item.item.slug})`)
-        .join("\n");
+      const page = filtered.slice(offset, offset + limit);
+      const lines = page.map((doc, index) => `${offset + index + 1}. [${doc.section}] ${doc.title} | slug=${doc.slug} | path=${doc.relativePath}`);
 
       return {
         content: [
           {
             type: "text",
             text:
-              `Document not found for identifier: \"${identifier}\".` +
-              (suggestions ? `\n\nDid you mean:\n${suggestions}` : "")
-          }
-        ],
-        isError: true
+              `Showing ${page.length} of ${filtered.length} docs` +
+              (normalizedSection ? ` in section "${normalizedSection}"` : "") +
+              ` (offset=${offset}, limit=${limit}).\n\n${lines.join("\n")}`
+          },
+          ...page.map((doc) => ({
+            type: "resource_link" as const,
+            uri: doc.resourceUri,
+            name: doc.title,
+            description: `${doc.section} | ${doc.url}`,
+            mimeType: "text/markdown"
+          }))
+        ]
       };
     }
+  );
 
-    const fullContent = await getDocContent(doc);
-    const body = sliceLines(fullContent, startLine, lineCount);
-    const responseText = [
-      `title: ${doc.title}`,
-      `section: ${doc.section}`,
-      `slug: ${doc.slug}`,
-      `source_url: ${doc.url}`,
-      `resource_uri: ${doc.resourceUri}`,
-      `lines: ${startLine}-${startLine + lineCount - 1}`,
-      "",
-      clipText(body, maxChars)
-    ].join("\n");
+  server.registerTool(
+    "search_docs",
+    {
+      description: "Search Filament v5 docs by title, slug, path, URL and markdown content",
+      inputSchema: {
+        query: z.string().min(2).max(256).describe("Search text, e.g. table filters, resource widgets, panel auth"),
+        section: z.string().max(128).optional().describe("Optional section filter"),
+        limit: z.number().int().min(1).max(50).default(10).describe("Maximum number of search results"),
+        includeExcerpts: z.boolean().default(true).describe("Include a short text excerpt in each result")
+      }
+    },
+    async ({ query, section, limit, includeExcerpts }) => {
+      const docs = await loadDocs();
+      const normalizedSection = section ? normalizeString(section) : undefined;
+      const tokens = tokenize(query);
 
-    return {
-      content: [
-        {
-          type: "text",
-          text: responseText
-        },
-        {
+      const scored = docs
+        .filter((doc) => (normalizedSection ? normalizeString(doc.section) === normalizedSection : true))
+        .map((doc) => ({ doc, score: scoreDoc(doc, query, tokens) }))
+        .filter((item) => item.score > 0)
+        .sort((a, b) => {
+          if (b.score !== a.score) {
+            return b.score - a.score;
+          }
+
+          return a.doc.title.localeCompare(b.doc.title);
+        })
+        .slice(0, limit);
+
+      if (scored.length === 0) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: "No matching docs found. Try broader terms or remove the section filter."
+            }
+          ]
+        };
+      }
+
+      const textLines: string[] = [];
+      const resourceLinks: Array<{
+        type: "resource_link";
+        uri: string;
+        name: string;
+        description: string;
+        mimeType: string;
+      }> = [];
+
+      textLines.push(`Found ${scored.length} matching docs for query: \"${query}\"`);
+      if (normalizedSection) {
+        textLines.push(`Section filter: ${normalizedSection}`);
+      }
+      textLines.push("");
+
+      for (let index = 0; index < scored.length; index += 1) {
+        const { doc, score } = scored[index];
+        textLines.push(`${index + 1}. [score=${score}] [${doc.section}] ${doc.title}`);
+        textLines.push(`   slug: ${doc.slug}`);
+        textLines.push(`   url: ${doc.url}`);
+
+        if (includeExcerpts) {
+          const fullContent = await getDocContent(doc);
+          const excerpt = makeExcerpt(fullContent, query);
+          if (excerpt) {
+            textLines.push(`   excerpt: ${excerpt}`);
+          }
+        }
+
+        textLines.push("");
+
+        resourceLinks.push({
           type: "resource_link",
           uri: doc.resourceUri,
           name: doc.title,
           description: `${doc.section} | ${doc.url}`,
           mimeType: "text/markdown"
-        }
-      ]
-    };
-  }
-);
+        });
+      }
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: textLines.join("\n").trim()
+          },
+          ...resourceLinks
+        ]
+      };
+    }
+  );
+
+  server.registerTool(
+    "get_doc",
+    {
+      description: "Fetch a Filament v5 markdown page by identifier (slug, title, URL, relative path or resource URI)",
+      inputSchema: {
+        identifier: z.string().min(2).max(2048).describe("Doc identifier. Examples: tables/filters/overview, actions/overview.md, full URL, page title"),
+        startLine: z.number().int().min(1).default(1).describe("First line number to return"),
+        lineCount: z.number().int().min(1).max(2000).default(400).describe("How many lines to return"),
+        maxChars: z.number().int().min(500).max(200000).default(50000).describe("Safety character limit")
+      }
+    },
+    async ({ identifier, startLine, lineCount, maxChars }) => {
+      const docs = await loadDocs();
+      const doc = findDoc(docs, identifier);
+
+      if (!doc) {
+        const tokens = tokenize(identifier);
+        const suggestions = docs
+          .map((item) => ({ item, score: scoreDoc(item, identifier, tokens) }))
+          .filter((item) => item.score > 0)
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 5)
+          .map((item) => `- ${item.item.title} (slug=${item.item.slug})`)
+          .join("\n");
+
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Document not found for identifier: \"${identifier}\".` + (suggestions ? `\n\nDid you mean:\n${suggestions}` : "")
+            }
+          ],
+          isError: true
+        };
+      }
+
+      const fullContent = await getDocContent(doc);
+      const body = sliceLines(fullContent, startLine, lineCount);
+      const responseText = [
+        `title: ${doc.title}`,
+        `section: ${doc.section}`,
+        `slug: ${doc.slug}`,
+        `source_url: ${doc.url}`,
+        `resource_uri: ${doc.resourceUri}`,
+        `lines: ${startLine}-${startLine + lineCount - 1}`,
+        "",
+        clipText(body, maxChars)
+      ].join("\n");
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: responseText
+          },
+          {
+            type: "resource_link",
+            uri: doc.resourceUri,
+            name: doc.title,
+            description: `${doc.section} | ${doc.url}`,
+            mimeType: "text/markdown"
+          }
+        ]
+      };
+    }
+  );
+
+  await registerResources(server);
+  return server;
+}
 
 async function main(): Promise<void> {
-  await registerResources();
-
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
+  // Load the bounded documentation cache before accepting concurrent requests.
+  await loadDocs();
+  if (process.argv.includes("--http")) {
+    await serveHttp(createServer);
+  } else {
+    const server = await createServer();
+    await server.connect(new StdioServerTransport());
+  }
 
   console.error(`Filament v5 MCP server running (docs root: ${DOCS_ROOT})`);
 }

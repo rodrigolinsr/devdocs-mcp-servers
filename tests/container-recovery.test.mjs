@@ -5,7 +5,10 @@ import { setTimeout as sleep } from 'node:timers/promises';
 import test from 'node:test';
 
 function docker(...args) {
-  return execFileSync('docker', args, { encoding: 'utf8', timeout: 20000 }).trim();
+  return execFileSync('docker', args, {
+    encoding: 'utf8',
+    timeout: 20000,
+  }).trim();
 }
 
 function state(name) {
@@ -22,13 +25,38 @@ async function eventually(check, timeout = 60000) {
 }
 
 for (const service of ['filamentphp', 'metronic']) {
-  test(`${service}: recovers from gateway/NGINX death and a hung gateway`, { timeout: 300000, concurrency: true }, async () => {
-    const name = `mcp-recovery-test-${randomUUID()}`;
-    docker('run', '-d', '--name', name, '--restart', 'always', `${service}-mcp:recovery-test`);
-    try {
-      await eventually(() => state(name).State.Health?.Status === 'healthy');
-      docker('exec', name, 'node', '/app/mcp/healthcheck.mjs');
-      docker('exec', name, 'node', '--input-type=module', '-e', `
+  test(
+    `${service}: recovers from server/NGINX death and a hung server`,
+    { timeout: 300000, concurrency: true },
+    async () => {
+      const name = `mcp-recovery-test-${randomUUID()}`;
+      docker(
+        'run',
+        '-d',
+        '--name',
+        name,
+        '--restart',
+        'always',
+        '--memory',
+        '512m',
+        '--memory-swap',
+        '512m',
+        '--pids-limit',
+        '128',
+        '--cpus',
+        '1',
+        `${service}-mcp:recovery-test`,
+      );
+      try {
+        await eventually(() => state(name).State.Health?.Status === 'healthy');
+        docker('exec', name, 'node', '/app/mcp/healthcheck.mjs');
+        docker(
+          'exec',
+          name,
+          'node',
+          '--input-type=module',
+          '-e',
+          `
         import assert from 'node:assert/strict';
         import { Client } from '/app/mcp/node_modules/@modelcontextprotocol/sdk/dist/esm/client/index.js';
         import { StreamableHTTPClientTransport } from '/app/mcp/node_modules/@modelcontextprotocol/sdk/dist/esm/client/streamableHttp.js';
@@ -42,45 +70,60 @@ for (const service of ['filamentphp', 'metronic']) {
         assert.ok(!doc.isError && doc.content.length);
         const search = await client.callTool({ name: 'search_docs', arguments: { query: 'table', limit: 1 } });
         assert.ok(!search.isError && search.content.length);
+        assert.ok((await client.callTool({ name: 'search_docs', arguments: { query: 'x'.repeat(257) } })).isError);
+        assert.ok((await client.callTool({ name: 'get_doc', arguments: { identifier: 'missing-doc' } })).isError);
         assert.ok((await client.readResource({ uri: page.uri })).contents.length);
         await client.close();
-      `);
+      `,
+        );
 
-      for (const failure of ['gateway death', 'NGINX death', 'hung gateway']) {
-        const restarts = state(name).RestartCount;
-        const code = failure === 'NGINX death'
-          ? `process.kill(Number(require('fs').readFileSync('/run/nginx.pid', 'utf8')), 'SIGKILL')`
-          : `
+        for (const failure of ['server death', 'NGINX death', 'hung server']) {
+          const restarts = state(name).RestartCount;
+          const code =
+            failure === 'NGINX death'
+              ? `process.kill(Number(require('fs').readFileSync('/run/nginx.pid', 'utf8')), 'SIGKILL')`
+              : `
             const fs = require('fs');
             const pid = fs.readdirSync('/proc').find((entry) => {
               if (!/^\\d+$/.test(entry) || Number(entry) === process.pid) return false;
-              try { return fs.readFileSync('/proc/' + entry + '/cmdline', 'utf8').includes('/supergateway'); }
+              try { const cmd = fs.readFileSync('/proc/' + entry + '/cmdline', 'utf8'); return cmd.includes('/app/mcp/build/index.js') && cmd.includes('--http'); }
               catch { return false; }
             });
-            if (!pid) throw new Error('Gateway process not found');
-            process.kill(Number(pid), '${failure === 'hung gateway' ? 'SIGSTOP' : 'SIGKILL'}');
+            if (!pid) throw new Error('HTTP server process not found');
+            process.kill(Number(pid), '${failure === 'hung server' ? 'SIGSTOP' : 'SIGKILL'}');
           `;
-        try {
-          docker('exec', name, 'node', '-e', code);
-        } catch (error) {
-          // Recovery can stop the container before the fault-injection exec returns.
-          if (failure === 'hung gateway' || error.status !== 137) throw error;
+          try {
+            docker('exec', name, 'node', '-e', code);
+          } catch (error) {
+            // Recovery can stop the container before the fault-injection exec returns.
+            if (failure === 'hung server' || error.status !== 137) throw error;
+          }
+          await eventually(
+            () => {
+              const container = state(name);
+              return (
+                container.RestartCount > restarts &&
+                container.State.Health?.Status === 'healthy'
+              );
+            },
+            failure === 'hung server' ? 180000 : 60000,
+          );
+          docker('exec', name, 'node', '/app/mcp/healthcheck.mjs');
         }
-        await eventually(() => {
-          const container = state(name);
-          return container.RestartCount > restarts && container.State.Health?.Status === 'healthy';
-        }, failure === 'hung gateway' ? 180000 : 60000);
-        docker('exec', name, 'node', '/app/mcp/healthcheck.mjs');
-      }
 
-      docker('stop', '--time', '10', name);
-      assert.equal(state(name).State.Status, 'exited');
-      assert.notEqual(state(name).State.ExitCode, 137, 'Shutdown must not require Docker SIGKILL');
-    } catch (error) {
-      console.error(docker('logs', '--tail', '100', name));
-      throw error;
-    } finally {
-      docker('rm', '-f', name);
-    }
-  });
+        docker('stop', '--time', '10', name);
+        assert.equal(state(name).State.Status, 'exited');
+        assert.notEqual(
+          state(name).State.ExitCode,
+          137,
+          'Shutdown must not require Docker SIGKILL',
+        );
+      } catch (error) {
+        console.error(docker('logs', '--tail', '100', name));
+        throw error;
+      } finally {
+        docker('rm', '-f', name);
+      }
+    },
+  );
 }

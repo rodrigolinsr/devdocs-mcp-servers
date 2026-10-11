@@ -6,6 +6,10 @@ services:
     expose:
       - "8000"
     restart: always
+    mem_limit: ${MCP_MEMORY_LIMIT:-512m}
+    memswap_limit: ${MCP_MEMORY_LIMIT:-512m}
+    cpus: ${MCP_CPUS:-1.0}
+    pids_limit: ${MCP_PIDS_LIMIT:-128}
     logging:
       driver: json-file
       options:
@@ -19,6 +23,10 @@ services:
     expose:
       - "8000"
     restart: always
+    mem_limit: ${MCP_MEMORY_LIMIT:-512m}
+    memswap_limit: ${MCP_MEMORY_LIMIT:-512m}
+    cpus: ${MCP_CPUS:-1.0}
+    pids_limit: ${MCP_PIDS_LIMIT:-128}
     logging:
       driver: json-file
       options:
