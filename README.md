@@ -31,6 +31,36 @@ This repo hosts MCP servers that expose local documentation datasets (index + co
 - NGINX proxies inbound traffic to supergateway.
 - Container exposes MCP endpoint at `/mcp` and health at `/healthz`.
 
+## Failure recovery and logs
+
+- Tini forwards shutdown signals and reaps orphaned processes. The entrypoint
+  exits if NGINX or Supergateway stops, allowing Docker's restart policy to recover.
+- A watchdog calls `list_docs` through the public-facing NGINX port every 30 seconds
+  (10-second timeout). Three consecutive failures restart the container, including
+  when the gateway remains alive but stops answering. A restart interrupts active calls;
+  clients must reconnect or retry. This is not a host-level or reverse-proxy repair.
+- Docker's healthcheck uses the same functional MCP probe. `/healthz` remains a
+  gateway liveness endpoint, not proof that the documentation tools work.
+- NGINX logs go to stdout/stderr. Both Compose files rotate Docker logs at 10 MB,
+  keeping three files per container. Deployments using other Compose definitions
+  must carry over these logging options.
+- Supergateway is pinned to `4.1.0`; update both Dockerfiles together and run the
+  recovery tests before changing it. MCP requests have a 60-second proxy timeout
+  instead of keeping failed requests open for a day.
+
+Build and test with isolated containers (no published ports or production changes):
+
+```bash
+docker build -f filamentphp/mcp/Dockerfile -t filamentphp-mcp:recovery-test filamentphp
+docker build -f metronic/mcp/Dockerfile -t metronic-mcp:recovery-test metronic
+node --test tests/container-recovery.test.mjs
+node --test tests/healthcheck.test.mjs
+```
+
+The tests kill NGINX/the gateway, freeze the gateway, verify automatic restart and
+working MCP calls, and check graceful shutdown. To apply the changes, build/publish
+new images and redeploy/recreate the containers; restarting an old image is not enough.
+
 ## Run locally (without Docker)
 
 ### Filament

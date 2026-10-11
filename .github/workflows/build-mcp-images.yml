@@ -13,7 +13,26 @@ permissions:
   packages: write
 
 jobs:
+  recovery-test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        name: [filamentphp, metronic]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Test functional health probe
+        run: node --test tests/healthcheck.test.mjs
+      - name: Build isolated test image
+        run: docker build -f ${{ matrix.name }}/mcp/Dockerfile -t ${{ matrix.name }}-mcp:recovery-test ${{ matrix.name }}
+      - name: Test process failure and hang recovery
+        run: node --test --test-name-pattern '^${{ matrix.name }}:' tests/container-recovery.test.mjs
+
   build:
+    needs: recovery-test
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

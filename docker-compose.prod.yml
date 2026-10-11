@@ -6,6 +6,11 @@ services:
     expose:
       - "8000"
     restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   metronic-mcp:
     image: ghcr.io/rodrigolinsr/metronic-mcp:latest
@@ -14,3 +19,8 @@ services:
     expose:
       - "8000"
     restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
